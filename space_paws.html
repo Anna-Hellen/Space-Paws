@@ -337,6 +337,25 @@ function aabb(a,b,s){
   s=s||6;
   return!(a.x+a.w-s<b.x+s||a.x+s>b.x+b.w-s||a.y+a.h-s<b.y+s||a.y+s>b.y+b.h-s);
 }
+// ─── HITBOX SYSTEM (inspirado em Silksong / bullet-hell) ───────────
+// Hurtbox do player: núcleo pequeno no centro da almofada da pata.
+// O sprite é 48×42; o núcleo é apenas 16×16 centralizado.
+// Você SÓ leva dano se o núcleo for atingido — colisões justas e legíveis.
+function playerCore(){
+  const pw=SPR.ship.width,ph=SPR.ship.height;
+  const cs=16; // núcleo 16×16
+  return{x:px+pw/2-cs/2,y:py+ph/2-cs/2,w:cs,h:cs};
+}
+// Overlap simples sem shrink (caixas já são exatas)
+function hit(a,b){
+  return!(a.x+a.w<b.x||a.x>b.x+b.w||a.y+a.h<b.y||a.y>b.y+b.h);
+}
+// Caixa reduzida de um inimigo/meteoro (corpo real, sem a borda vazia do sprite)
+function bodyBox(o,m){
+  m=m||0.18; // margem: 18% de cada lado
+  const mx=o.w*m,my=o.h*m;
+  return{x:o.x+mx,y:o.y+my,w:o.w-mx*2,h:o.h-my*2};
+}
 
 function spawnItem(x,y,type){
   const spr=type==='tuna'?SPR.tuna:type==='pwrup'?SPR.pwrup:SPR.yarn;
@@ -516,7 +535,7 @@ function update(dt){
   // ── COLLISIONS: player bullets ───────────────
   bls.forEach(b=>{
     ens.forEach(e=>{
-      if(b.a&&e.a&&aabb(b,e)){
+      if(b.a&&e.a&&hit(b,bodyBox(e,0.10))){
         b.a=false;e.a=false;sc+=e.spr===SPR.gunner?150:100;
         boom(e.x+e.w/2,e.y+e.h/2);
         const wv=Math.floor(diff);
@@ -525,14 +544,14 @@ function update(dt){
       }
     });
     mts.forEach(m=>{
-      if(b.a&&m.a&&aabb(b,m)){
+      if(b.a&&m.a&&hit(b,bodyBox(m,0.12))){
         b.a=false;m.a=false;sc+=m.pts;boom(m.x+m.w/2,m.y+m.h/2,8);
         const wv=Math.floor(diff);
         if(wv>=4&&Math.random()<.22)spawnItem(m.x+m.w/2,m.y+m.h/2,'yarn');
       }
     });
     // Boss hit detection — generous hitbox (shrink=2)
-    if(bossObj&&b.a&&bossObj.a&&bossObj.vulnerable&&aabb(b,bossObj,2)){
+    if(bossObj&&b.a&&bossObj.a&&bossObj.vulnerable&&hit(b,bodyBox(bossObj,0.06))){
       b.a=false;bossObj.hp--;
       boom(b.x,b.y,5);
       if(bossObj.hp<=0){
@@ -547,12 +566,12 @@ function update(dt){
 
   // ── PLAYER HIT ───────────────────────────────
   if(pinv<=0){
-    const pl={x:px,y:py,w:pw,h:ph};
+    const core=playerCore(); // núcleo 16×16 — Silksong-style: hurtbox pequena e justa
     let got=false;
-    ens.forEach(e=>{if(e.a&&aabb(pl,e,8)){e.a=false;got=true;boom(e.x+e.w/2,e.y+e.h/2);}});
-    mts.forEach(m=>{if(m.a&&aabb(pl,m,9)){m.a=false;got=true;boom(m.x+m.w/2,m.y+m.h/2);}});
-    ebls.forEach(b=>{if(b.a&&aabb(pl,b,3)){b.a=false;got=true;}});
-    if(bossObj&&bossObj.a&&aabb(pl,bossObj,10))got=true;
+    ens.forEach(e=>{if(e.a&&hit(core,bodyBox(e))){e.a=false;got=true;boom(e.x+e.w/2,e.y+e.h/2);}});
+    mts.forEach(m=>{if(m.a&&hit(core,bodyBox(m,0.22))){m.a=false;got=true;boom(m.x+m.w/2,m.y+m.h/2);}});
+    ebls.forEach(b=>{if(b.a&&hit(core,b)){b.a=false;got=true;}});
+    if(bossObj&&bossObj.a&&hit(core,bodyBox(bossObj,0.12)))got=true;
     if(got){
       lv--;if(weaponLvl>1){weaponLvl--;wepDownFlash=2.0;}pinv=2.5;
       boom(px+pw/2,py+ph/2,10);
@@ -565,9 +584,10 @@ function update(dt){
   }
 
   // ── COLLECT ITEMS ────────────────────────────
-  const pl={x:px,y:py,w:SPR.ship.width,h:SPR.ship.height};
+  // Coleta: caixa GENEROSA (sprite inteiro + 4px de margem extra) — pegar item é fácil
+  const pl={x:px-4,y:py-4,w:SPR.ship.width+8,h:SPR.ship.height+8};
   items.forEach(it=>{
-    if(it.a&&aabb(pl,it,4)){
+    if(it.a&&hit(pl,it)){
       if(it.type==='yarn')pinv=Math.max(pinv,0)+2.5;
       else if(it.type==='tuna')lv=Math.min(lv+1,7);
       else if(it.type==='pwrup'){weaponLvl=Math.min(weaponLvl+1,3);sc+=50;}
@@ -662,6 +682,14 @@ function renderGame(){
 
   // Shield glow
   if(pinv>0.5){ct.globalAlpha=.22;ct.strokeStyle=YB;ct.lineWidth=4;ct.beginPath();ct.arc(px+SPR.ship.width/2|0,py+SPR.ship.height/2|0,20,0,Math.PI*2);ct.stroke();ct.globalAlpha=1;}
+  // Núcleo (hurtbox) visível durante invulnerabilidade — aprendizado visual do ponto fraco
+  if(pinv>0){
+    const _core=playerCore();
+    ct.globalAlpha=.5+Math.sin(Date.now()*.012)*.3;
+    ct.fillStyle='#FFFFFF';
+    ct.fillRect(_core.x+_core.w/2-2|0,_core.y+_core.h/2-2|0,4,4);
+    ct.globalAlpha=1;
+  }
 
   // HUD
   txt('\u2726 '+sc,8,16,11,gA);
@@ -871,15 +899,18 @@ function renderHowto(){
     txt('POWER-UPS',14,py2+12,10,sHD);
     const pups=[
       [SPR.yarn, YB, 'Bola de la','Escudo 2.5s'],
-      [SPR.tuna, TNb,'Atum',      '+1 vida (max 5)'],
+      [SPR.tuna, TNb,'Atum',      '+1 vida (max 7)'],
       [SPR.pwrup,gA, 'Seta',      'Melhora tiro'],
     ];
     pups.forEach(([spr,col,name,desc],i)=>{
       const cw=Math.floor((W-24)/3),ipx=10+i*(cw+2);
-      BOX(ipx,py2+18,cw,48,col+'60');
-      ct.drawImage(spr,ipx+(cw-spr.width)/2|0,py2+22);
-      txt(name,ipx+cw/2|0,py2+22+spr.height+12,10,col,'center');
-      txt(desc,ipx+cw/2|0,py2+22+spr.height+24,8,'#8898AA','center');
+      const bh=58,by2=py2+18;            // caixa mais alta (48→58)
+      BOX(ipx,by2,cw,bh,col+'60');
+      // Área fixa do ícone: 26px de altura — sprite centralizado nela
+      ct.drawImage(spr,ipx+(cw-spr.width)/2|0,by2+4+(26-spr.height)/2|0);
+      // Texto em posições FIXAS (não dependem do tamanho do sprite)
+      txt(name,ipx+cw/2|0,by2+42,10,col,'center');
+      txt(desc,ipx+cw/2|0,by2+53,8,'#8898AA','center');
     });
   }
 
