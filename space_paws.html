@@ -5,16 +5,23 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Space Paws: Galactic Conquest</title>
 <style>
+@font-face{font-family:'PixelFont';src:url(data:font/woff2;base64,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) format('woff2');font-display:block}
+
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{background:#0E0D28;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;font-family:monospace;user-select:none}
+html,body{background:#0E0D28;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;font-family:'PixelFont',monospace;user-select:none}
 canvas{image-rendering:pixelated;image-rendering:crisp-edges;cursor:crosshair;display:block}
 .ctrl{color:#FFFBD450;font-size:11px;margin-top:8px;text-align:center;line-height:2}
+.ar{display:inline-block;width:9px;height:9px;background:#FFFBD480;vertical-align:middle;margin:0 1px}
+.ar.up{clip-path:polygon(50% 0,0 100%,100% 100%)}
+.ar.dn{clip-path:polygon(50% 100%,0 0,100% 0)}
+.ar.lf{clip-path:polygon(0 50%,100% 0,100% 100%)}
+.ar.rt{clip-path:polygon(100% 50%,0 0,0 100%)}
 
 </style>
 </head>
 <body>
 <canvas id="G"></canvas>
-<p class="ctrl">↑↓←→/WASD mover · ESPAÇO atirar · P pausar · R reiniciar</p>
+<p class="ctrl"><span class="ar up"></span><span class="ar dn"></span><span class="ar lf"></span><span class="ar rt"></span> /WASD mover · ESPAÇO atirar · P pausar · R reiniciar</p>
 <script>
 // ════════════════════════════════════════════
 // SPACE PAWS: GALACTIC CONQUEST  - Versão só Deus sabe
@@ -23,6 +30,7 @@ const CV=document.getElementById('G');
 const ct=CV.getContext('2d');
 const W=480,H=270;
 CV.width=W;CV.height=H;
+ct.imageSmoothingEnabled=false;   // tudo nítido (sprites + fonte pixel)
 function resize(){const s=Math.min(window.innerWidth/W,(window.innerHeight-40)/H,2.5);CV.style.width=W*s+'px';CV.style.height=H*s+'px';}
 resize();window.addEventListener('resize',resize);
 CV.tabIndex=0;CV.addEventListener('click',()=>CV.focus());setTimeout(()=>CV.focus(),200);
@@ -99,20 +107,24 @@ const D_MITT=[
   [_,_,_,DO,OA,OA,DO,DO,OA,OA,DO,_,_,_],
 ];
 const D_SHIP=[
-  [null,null,null,null,null,DO,DO,null,null,null,null,null,DO,DO,null,null],
-  [null,null,null,null,DO,pawP,pawP,DO,null,null,null,DO,pawP,pawO,DO,null],
-  [null,null,null,DO,pawO,pawP,pawP,pawP,DO,DO,pawP,pawP,pawP,pawO,DO,null],
-  [null,null,DO,pawO,pawP,pawP,pawP,eH,eH,eH,eH,pawP,pawP,pawP,pawO,DO],
-  [null,null,DO,pawO,eH,eH,eH,eH,eH,eH,eH,pawP,pawP,DO,null,null],
-  [null,DO,pawP,pawP,pawP,eH,eH,pawP,pawP,pawP,eH,pawP,pawP,pawP,DO,null],
-  [null,DO,pawP,pawP,pawP,eH,pawP,pawP,pawP,pawP,pawP,pawO,pawO,pawO,DO,null],
-  [null,null,DO,eH,eH,pawP,pawP,pawP,pawP,pawP,pawP,pawP,pawO,pawO,DO,null],
-  [null,null,null,DO,eH,eH,pawP,pawP,pawP,pawP,pawP,pawO,pawO,pawO,DO,null],
-  [null,null,null,DO,eH,eH,eH,pawP,pawP,pawP,pawO,pawO,pawO,pawO,DO,null],
-  [null,null,null,null,null,DO,eH,eH,eH,eH,eH,pawO,DO,null,null,null],
-  [null,null,null,null,null,null,null,DO,DO,DO,DO,null,null,null,null,null],
-  [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
-  [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]
+  [_,_,_,sHA,sHA,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+  [_,_,_,sHA,sHC,sHB,DO,_,_,_,_,_,_,_,_,_,_,sHA,_,_,_,_,_,DO,_,_,_,_],
+  [_,DO,_,_,sHA,sHD,sHC,sHA,_,_,_,_,_,_,_,_,_,sHC,sHA,_,_,_,_,sHC,sHA,_,_,_],
+  [sHA,sHC,sHB,_,_,sHB,PLA,sHD,sHB,DO,_,_,_,_,_,_,_,PLB,sHC,_,_,_,sHA,PLA,sHA,_,_,_],
+  [sHA,PLB,PLB,sHA,_,DO,sHC,PLA,sHD,PLB,sHA,DO,_,_,_,_,sHA,pawP,sHD,sHA,_,_,sHB,hL,sHB,_,_,_],
+  [_,sHA,PLB,PLB,sHA,_,sHA,sHD,sHD,sHD,sHD,sHC,sHA,_,_,_,sHA,PLA,hL,sHB,_,sHA,pawP,sHE,sHC,_,_,_],
+  [_,_,sHB,sHD,PLB,sHA,_,sHB,sHD,sHD,sHD,PLA,sHD,sHC,sHC,sHC,sHC,PLA,PLA,PLB,sHA,sHA,sHC,sHC,sHB,_,_,_],
+  [_,_,_,sHB,sHD,PLB,sHA,sHB,sHD,sHD,sHD,sHD,sHD,PLA,PLA,PLA,sHD,sHD,cGb,sHD,sHD,sHD,PLB,sHB,sHC,sHA,_,_],
+  [_,_,_,DO,sHC,PLB,PLB,PLA,sHD,sHD,PLA,YA,sHE,sHE,sHE,sHE,cGb,eH,eH,cGb,sHD,YA,PLA,PLA,PLA,PLA,sHC,sHA],
+  [_,_,_,_,sHB,PLB,sHD,sHD,sHD,sHD,PLA,YA,sHE,sHE,sHE,sHE,cGb,eH,eH,cGb,sHD,YA,PLA,sHD,sHD,sHD,sHC,sHA],
+  [_,_,_,sHA,PLB,sHD,sHC,sHC,PLB,PLB,PLB,PLB,PLB,PLB,PLB,PLB,sHD,sHD,cGb,sHD,PLB,PLB,PLB,PLB,PLB,sHB,_,_],
+  [_,_,DO,sHC,sHD,PLB,DO,PLC,sHD,sHD,sHD,sHD,PLB,sHB,sHB,sHB,sHB,sHB,sHB,sHA,sHA,sHA,sHA,sHA,sHA,sHA,_,_],
+  [_,_,sHB,PLB,PLB,sHA,sHA,PLB,sHD,PLA,sHD,sHC,sHA,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+  [_,sHA,PLB,sHD,sHB,DO,sHC,PLA,sHD,PLB,sHA,DO,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+  [_,_,sHA,sHB,DO,sHB,PLA,sHD,sHB,DO,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+  [_,_,_,_,sHA,sHD,sHC,sHA,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+  [_,_,_,sHA,sHC,sHB,DO,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
+  [_,_,_,sHA,sHA,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_],
 ];
 // WOOF SCOUT — coral/red, round, dog face (NON-SHOOTER)
 const D_ENEMY=[
@@ -240,7 +252,7 @@ function bld(d,s){
 }
 const SPR={};
 function initSprites(){
-  SPR.ship   =bld(D_SHIP,3);
+  SPR.ship   =bld(D_SHIP,2);
   SPR.scout  =bld(D_ENEMY,SC);
   SPR.gunner =bld(D_ENEMY2,SC);
   SPR.boss   =bld(D_BOSS,SC*2); // boss at double size
@@ -603,9 +615,34 @@ function update(dt){
 // ─── TEXT ────────────────────────────────────
 function txt(s,x,y,sz,c,al){
   c=c||'#FFFBD4';al=al||'left';
-  ct.font='bold '+sz+'px "Courier New",monospace';
+  ct.font=''+sz+"px 'PixelFont',monospace";
   ct.textAlign=al;ct.fillStyle='#00000099';ct.fillText(s,x+1,y+1);
   ct.fillStyle=c;ct.fillText(s,x,y);ct.textAlign='left';
+}
+
+// ─── ARROW (setas idênticas desenhadas) ──────
+function arrow(cx,cy,dir,s,c){
+  c=c||gA;
+  let pts;
+  if(dir==='up')        pts=[[cx,cy-s],[cx-s,cy+s],[cx+s,cy+s]];
+  else if(dir==='down') pts=[[cx,cy+s],[cx-s,cy-s],[cx+s,cy-s]];
+  else if(dir==='left') pts=[[cx-s,cy],[cx+s,cy-s],[cx+s,cy+s]];
+  else                  pts=[[cx+s,cy],[cx-s,cy-s],[cx-s,cy+s]];
+  ct.fillStyle=c;ct.beginPath();ct.moveTo(pts[0][0],pts[0][1]);
+  ct.lineTo(pts[1][0],pts[1][1]);ct.lineTo(pts[2][0],pts[2][1]);ct.closePath();ct.fill();
+}
+// desenha as 4 setas + "/  WASD" centralizado em (cx,cy); retorna nada
+function moveKeys(cx,cy,s,gap){
+  const dirs=['up','down','left','right'];
+  // largura total: 4 setas + gaps + espaço + "WASD"
+  ct.font="12px 'PixelFont',monospace";
+  const txtW=ct.measureText('/  WASD').width;
+  const arrowsW=4*(s*2)+3*(gap-s*2);
+  const totalW=arrowsW+12+txtW;
+  let x=cx-totalW/2+s;
+  for(const dr of dirs){arrow(x,cy,dr,s,gA);x+=gap;}
+  x=x-gap+s*2+8;
+  txt('/  WASD',x,cy+5,12,gA,'left');
 }
 const blk=()=>Math.floor(Date.now()/550)%2===0;
 
@@ -626,7 +663,18 @@ function renderTitle(){
   txt('\u2014 Galactic Conquest \u2014',W/2,96,10,'#C0B0F8','center');
   if(blk()) txt('[ PRESSIONE  ESPAÇO ]',W/2,126,12,'#FFFBD4','center');
   if(hi>0) txt('Recorde: '+hi+' pts',W/2,144,10,gA,'center');
-  txt('\u2191\u2193\u2190\u2192 / WASD  mover',W/2,163,11,'#C0B8E8','center');
+  // setas idênticas desenhadas + texto (título)
+  (function(){
+    const ay=160,s=4,gp=12,col='#C0B8E8';
+    ct.font="11px 'PixelFont',monospace";
+    const label='/ WASD  mover';
+    const lw=ct.measureText(label).width;
+    const arrowsW=3*gp+s*2;
+    const totalW=arrowsW+8+lw;
+    let ax=W/2-totalW/2+s;
+    for(const dr of ['up','down','left','right']){arrow(ax,ay,dr,s,col);ax+=gp;}
+    txt(label,ax-gp+s+8,163,11,col,'left');
+  })();
   txt('ESPAÇO atirar   P pausar',W/2,179,11,'#C0B8E8','center');
   if(blk()) txt('[H] Como Jogar',W/2,197,10,'#9868E0','center');
   ct.drawImage(SPR.mittT,10,H-SPR.mittT.height-2);
@@ -738,27 +786,38 @@ function renderGame(){
 function renderGO(){
   baseLayer();
   ct.globalAlpha=.42;ct.fillStyle='#3A0510';ct.fillRect(0,55,W,205);ct.globalAlpha=1;
-  txt('GAME  OVER',W/2,90,22,'#FF4868','center');
-  txt('Pontuacao: '+sc+' pts',W/2,116,12,'#FFFBD4','center');
-  if(sc>0&&sc>=hi) txt('\u2726 NOVO RECORDE! \u2726',W/2,132,10,gA,'center');
-  txt('Melhor: '+hi+' pts',W/2,146,9,'#C0B0F8','center');
+  txt('GAME OVER',W/2,88,18,'#FF4868','center');
+  txt('Pontuacao: '+sc+' pts',W/2,112,8,'#FFFBD4','center');
+  if(sc>0&&sc>=hi) txt('\u2726 NOVO RECORDE! \u2726',W/2,128,8,gA,'center');
+  txt('Melhor: '+hi+' pts',W/2,142,8,'#C0B0F8','center');
 
-  const mx=42,my=158;
+  const mx=42,my=160;
   ct.drawImage(SPR.mitt,mx,my);
   const adv=ADVICE[advIdx];
-  ct.font='bold 9px "Courier New",monospace';
+  ct.font="8px 'PixelFont',monospace";
+  const LH=14;                                   // altura de linha p/ fonte pixel
   const lw=Math.max(...adv.map(l=>ct.measureText(l).width));
-  const bw=Math.ceil(lw)+22,bh=adv.length*14+16;
-  const bx=mx+SPR.mitt.width+14,by=my+6;
+  const padX=10,padY=9;
+  const bw=Math.ceil(lw)+padX*2,bh=adv.length*LH+padY*2-4;
+  const bx=mx+SPR.mitt.width+14,by=my+2;
   ct.fillStyle='#F0E8FF';ct.fillRect(bx,by,bw,bh);
   ct.strokeStyle=DO;ct.lineWidth=2;ct.strokeRect(bx,by,bw,bh);
-  ct.fillStyle='#F0E8FF';ct.beginPath();ct.moveTo(bx,by+14);ct.lineTo(bx-10,by+20);ct.lineTo(bx,by+26);ct.fill();
-  ct.strokeStyle=DO;ct.beginPath();ct.moveTo(bx,by+14);ct.lineTo(bx-10,by+20);ct.lineTo(bx,by+26);ct.stroke();
+  // rabicho do balão centralizado na altura da caixa
+  const ty=by+bh/2;
+  ct.fillStyle='#F0E8FF';ct.beginPath();ct.moveTo(bx,ty-6);ct.lineTo(bx-9,ty);ct.lineTo(bx,ty+6);ct.fill();
+  ct.strokeStyle=DO;ct.beginPath();ct.moveTo(bx,ty-6);ct.lineTo(bx-9,ty);ct.lineTo(bx,ty+6);ct.stroke();
   ct.fillStyle='#2C1810';ct.textAlign='left';
-  adv.forEach((line,i)=>ct.fillText(line,bx+8,by+15+i*14));
-  ct.fillStyle='#4830A0';ct.fillRect(mx-4,my+SPR.mitt.height+3,SPR.mitt.width+8,22);
-  ct.fillStyle=gA;ct.font='bold 9px "Courier New",monospace';ct.textAlign='center';
-  ct.fillText('Grl. Mittens',mx+SPR.mitt.width/2|0,my+SPR.mitt.height+16);ct.textAlign='left';
+  adv.forEach((line,i)=>ct.fillText(line,bx+padX,by+padY+4+i*LH));
+  ct.font="8px 'PixelFont',monospace";
+  const nome='Grl. Mittens';
+  const nw=ct.measureText(nome).width;
+  const nbw=Math.ceil(nw)+16;                    // barra = texto + 8px cada lado
+  const nbx=mx+SPR.mitt.width/2-nbw/2;           // centralizada sob o sprite
+  const nby=my+SPR.mitt.height+4;
+  ct.fillStyle='#4830A0';ct.fillRect(nbx,nby,nbw,16);
+  ct.strokeStyle=DO;ct.lineWidth=1;ct.strokeRect(nbx,nby,nbw,16);
+  ct.fillStyle=gA;ct.textAlign='center';
+  ct.fillText(nome,mx+SPR.mitt.width/2|0,nby+12);ct.textAlign='left';
   if(gst>1){
     if(blk()) txt('ESPAÇO — jogar novamente',W/2,240,11,'#FFFBD4','center');
     txt('T — voltar ao menu',W/2,256,10,'#9868E0','center');
@@ -822,10 +881,21 @@ function renderHowto(){
   }
 
   if(howtoPage===0){
-    // Mittens portrait
-    ct.drawImage(SPR.mittT,10,29);
-    ct.fillStyle='#3820A0';ct.fillRect(10,115,56,15);
-    txt('Grl. Mittens',38,126,8,gA,'center');
+    // Mittens portrait (retrato menor p/ caber o nome completo)
+    const portW=SPR.mitt.width;            // escala 3 = 42px (menor que mittT)
+    const portX=10+(108-portW)/2;          // centralizado sobre a barra de 108px
+    ct.drawImage(SPR.mitt,portX,32);
+    // Barra do nome — ajustada ao texto completo
+    ct.font="8px 'PixelFont',monospace";
+    const gName='Grl. Mittens';
+    const gnw=ct.measureText(gName).width;
+    const gbw=Math.ceil(gnw)+12;
+    const gbx=10;                          // alinhada à esquerda
+    const gby=32+SPR.mitt.height+6;
+    ct.fillStyle='#3820A0';ct.fillRect(gbx,gby,gbw,15);
+    ct.strokeStyle=DO;ct.lineWidth=1;ct.strokeRect(gbx,gby,gbw,15);
+    ct.fillStyle=gA;ct.textAlign='center';
+    ct.fillText(gName,gbx+gbw/2,gby+11);ct.textAlign='left';
 
     // Story lines
     const story=[
@@ -844,19 +914,27 @@ function renderHowto(){
       ['#9060D0','Derrote Woofsky na Onda 10'],
       ['#9060D0','para conquistar o planeta!'],
     ];
-    story.forEach(([col,line],i)=>{if(col&&line)txt(line,74,43+i*14,11,col);});
+    story.forEach(([col,line],i)=>{if(col&&line)txt(line,124,40+i*14,11,col);});
   }
   else if(howtoPage===1){
     const ctls=[
-      ['\u2191 \u2193 \u2190 \u2192  /  WASD','Mover a nave'],
+      ['@MOVE@','Mover a nave'],
       ['ESPAÇO  /  Z','Atirar'],
       ['P  /  ESC','Pausar o jogo'],
       ['R','Reiniciar partida'],
     ];
     ctls.forEach(([k,v],i)=>{
-      BOX(10,28+i*26,W-20,24,i%2?'#281870':'#201460');
-      txt(k,20,28+i*26+16,12,gA);
-      txt(v,198,28+i*26+16,12,'#E0D8FF');
+      const by=28+i*26;
+      BOX(10,by,W-20,24,i%2?'#281870':'#201460');
+      if(k==='@MOVE@'){
+        // setas idênticas desenhadas, alinhadas à esquerda do box
+        const ay=by+12,s=5,gp=16;let ax=24;
+        for(const dr of ['up','down','left','right']){arrow(ax,ay,dr,s,gA);ax+=gp;}
+        txt('/  WASD',ax-gp+s+10,by+16,12,gA,'left');
+      }else{
+        txt(k,20,by+16,12,gA);
+      }
+      txt(v,198,by+16,12,'#E0D8FF');
     });
 
     ct.fillStyle='#403060';ct.fillRect(10,136,W-20,1);
@@ -938,7 +1016,11 @@ function loop(ts){
   requestAnimationFrame(loop);
 }
 initSprites();initStars();
-requestAnimationFrame(ts=>{lt=ts;requestAnimationFrame(loop);});
+// Espera a fonte pixel carregar antes de iniciar (evita flash com fonte fallback)
+function startGame(){requestAnimationFrame(ts=>{lt=ts;requestAnimationFrame(loop);});}
+if(document.fonts&&document.fonts.ready){
+  document.fonts.load("8px 'PixelFont'").then(()=>document.fonts.ready).then(startGame).catch(startGame);
+}else{startGame();}
 </script>
 </body>
 </html>
